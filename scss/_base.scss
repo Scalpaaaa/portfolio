@@ -1,0 +1,24 @@
+@use './variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $police;
+  background-color: $fond-sombre;
+  color: $texte-blanc;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+  background-color: $fond-clair;
+  color: $texte-noir;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
