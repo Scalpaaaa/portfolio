@@ -55,11 +55,35 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setInterval(creerPluieDeCaca, 300);
-
-  document.addEventListener('keydown', (e) => {
-    const notes = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'];
-    const randomNote = notes[Math.floor(Math.random() * notes.length)];
-    const audio = new Audio(`./audio/${randomNote}.mp3`);
-    audio.play();
-  });
 });
+
+const anniversaireMelodie = [
+  'do', 'do', 're', 'do', 'fa', 'mi',
+  'do', 'do', 're', 'do', 'sol', 'fa',
+  'do', 'do', 'do', 'la', 'fa', 'mi', 're',
+  'si', 'si', 'la', 'fa', 'sol', 'fa'
+];
+
+let anniversairejouer = false;
+
+document.addEventListener('keydown', () => {
+  if (!anniversairejouer) {
+    anniversairejouer = true;
+    jouerAnniversaire(0);
+  }
+});
+
+function jouerAnniversaire(index) {
+  if (index >= anniversaireMelodie.length) {
+    anniversairejouer = false;
+    return;
+  }
+
+  const note = anniversaireMelodie[index];
+  const audio = new Audio(`./audio/${note}.mp3`);
+  audio.play();
+
+  setTimeout(() => {
+    jouerAnniversaire(index + 1);
+  }, 400);
+}
